@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+#
+# Environment variables for every shell
+#
+
+export PATH="${HOME}/bin:${PATH}"
