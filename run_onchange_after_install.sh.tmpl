@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "Linux" -}}
+#!/bin/sh
+
+asdf add direnv
+asdf direnv setup
+{{ end }}
