@@ -1,7 +1,7 @@
 
 source "${ASDF_DIR}/asdf.sh"
 
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+#source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
 ZIM_HOME="${XDG_CACHE_HOME}/zim"
 ZIM_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zimrc"
