@@ -1,5 +1,5 @@
 
-source "${ASDF_DIR}/asdf.sh"
+#source "${ASDF_DIR}/asdf.sh"
 
 #source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
