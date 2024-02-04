@@ -5,7 +5,7 @@ return {
     -- priority = 2000,
     opts = {
       flavour = "mocha",
-      ---transparent_background = true,
+      transparent_background = true,
       integrations = {
         cmp = true,
         fidget = true,
