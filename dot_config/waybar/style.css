@@ -1,0 +1,48 @@
+* {
+   border: none;
+   border-radius: 1px;
+   font-family: Inter, sans-serif;
+   font-size: 15pt;
+   padding: 0 5px;
+ }
+
+ window#waybar {
+   background: @base;
+   color: @text;
+ }
+
+ #bluetooth {
+   padding-right: 10px;
+ }
+
+ tooltip {
+   background: @crust;
+   border: 2px solid @lavendar;
+ }
+
+ tooltip label {
+   color: @text;
+ }
+
+ #workspaces button {
+   padding: 0 0.5em;
+   background-color: @surface0;
+   color: @text;
+   margin: 0.2em;
+ }
+
+ #workspaces button.empty {
+   color: @overlay0;
+ }
+
+ #workspaces button.visible {
+   color: @blue;
+ }
+ #workspaces button.active {
+   color: @green;
+ }
+ #workspaces button.urgent {
+   background-color: @red;
+   border-radius: 1em;
+   color: @text;
+ }

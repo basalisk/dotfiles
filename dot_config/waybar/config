@@ -1,0 +1,86 @@
+{
+  "name": "TopBar",
+  "layer": "top",
+  "position": "top",
+  "modules-left": [],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    //"keyboard-state",
+    "clock",
+    "bluetooth",
+    "wireplumber"
+  ],
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  "bluetooth": {
+    // TODO: add blueman configuration stuff
+    "format": "\udb80\udcaf",
+    "format-disabled": "\udb80\udcb2",
+    "format-off": "\udb80\udcb2",
+    "format-on": "\udb80\udcaf",
+    "format-connected": "\udb80\udcb1"
+  },
+  "clock": {
+    "format": "{:%H:%M}  ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode"
+      //      "format": {
+      //       "months": "<span id=\"calendar_months\">{}</span>",
+      //        "days": "<span id=\"calendar_days\">{}</span>",
+      //        "weeks": "<span id=\"calendar_weeks\">{}</span>",
+      //        "weekdays": "<span id=\"calendar_weekdays\">{}</span>",
+      //        "today": "<span id=\"calendar-today\">{}</span>"
+      //      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "cpu": {
+    "format": "\uf4bc {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}",
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ]
+  },
+  "hyprland/workspaces": {
+    "format": "{name} {windows}",
+    "format-window-separator": " "
+  },
+  "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-muted": "",
+    "on-click": "helvum",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "ignore": {}
+}
+// vi:ft=jsonc
