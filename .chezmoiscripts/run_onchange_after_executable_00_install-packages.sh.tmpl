@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# {{- if eq .osid "linux-arch" -}}
+
+printf "Installing packages using pacman" 
+
+sudo pacman -S --needed - << _EOF
+sway
+uwsm
+zsh
+nvim
+_EOF
+
+# {{ end }}
