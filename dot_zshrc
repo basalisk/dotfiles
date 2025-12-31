@@ -1,3 +1,4 @@
+#!/usr/bin/zsh
 ZIM_HOME="${XDG_CACHE_HOME}/zim"
 ZIM_CONFIG_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zimrc"
 
