@@ -1,0 +1,6 @@
+[repo.debian]
+name = "Debian Linux"
+uses = "apt"
+tron = "system"
+priveleged = "true"
+supported = [ "linux-debian" ]

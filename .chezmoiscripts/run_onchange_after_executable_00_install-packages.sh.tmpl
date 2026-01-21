@@ -1,14 +1,88 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
-# {{- if eq .osid "linux-arch" -}}
+{{  $repos := dict -}}
+{{- $packages := dict -}}
+{{- $osid := .osid -}}
+{{- $disabled_repos := dig "mgr" "blocked" (list) . -}}
+{{- $repo_preference := dig "mgr" "order" (list) . -}}
+{{- $selected_packages := dig "mgr" "selections" (list) . -}}
 
-printf "Installing packages using pacman" 
 
-sudo pacman -S --needed - << _EOF
-sway
-uwsm
-zsh
-nvim
-_EOF
+{{- printf "# We are on platform %s\n" $osid -}}
+{{- range $id, $repo := .repo -}}
+{{- if hasKey $repo "name" }}
+{{- 	printf "# We know about repository %s: " .name -}}
+{{- 	if has $repo $disabled_repos -}}
+{{-	 	printf "disabled by user preference\n" .name -}}
+{{- 	else if hasKey $repo "supported" -}}
+{{- 	 	if .supported | has $osid  -}}
+{{- 			printf "supported on this platform\n" -}}
+{{- 		else -}}
+{{- 			printf "not supported on this platform\n" -}}
+{{- 			continue -}}
+{{- 		end  -}}
+{{- 	else -}}
+{{- 		printf "supported on all platforms\n" -}}
+{{- 	end -}}
+{{- else -}}
+{{- 		printf "# Malformed repository entry, missing name: %s\n" . -}}
+{{- 		continue -}}
+{{- end -}}
+{{- 	$repos = set $repos $id $repo }}
+function get_repo_{{$id}}_already_installed ()
+{
+	{{ dig "installed" "true" $repo }} | sed -e 's/^/{{$id}}\t/ 
+}
 
-# {{ end }}
+function compare_versions_{{$id}} () #compare_versions_repo $have $wanted
+{
+	#default says that what we have is older than what we want
+	{{ dig "compver" "printf '-1\\n'" $repo }}
+}
+{{ end -}}
+
+
+{{- range $pkgid, $pkg := .pkg -}}
+{{- if hasKey $pkg "name" -}}
+{{- 	$pkgname := get $pkg "name" -}}
+{{- 	printf "# We know about package %s\n" $pkgname -}}
+{{- 	$packages = set $packages $pkgid . }}
+{{- 	if hasKey . "install" -}}
+{{- 		range $reponame, $repofull := .install -}}
+{{- 		printf "# Adding %s to those that can be obtained from %s\n" $pkgname $reponame -}}
+{{- 		$entry := get $repos $reponame -}}
+{{- 		$packs4repo := set $entry "packages" (append (default (list) (get $entry "packages")) (get $repofull "id"))  -}} 
+{{- 		$_ := set $repos $reponame $packs4repo -}}
+{{-		end -}}
+{{- 	else -}}
+{{-		printf "# Malformed package entry, missing install options\n" -}}
+{{-		continue -}}
+{{- 	end -}}
+{{- else -}}
+{{- 	printf "# Malformed package entry, missing name: %s\n" . -}}
+{{- 	continue -}}
+{{- end -}}
+{{- end -}}
+
+#
+: << COMMENT
+{{  printf "# Repos:\n%s \n" (toToml $repos) -}}
+{{- printf "# Packages:\n%s \n" (toToml $packages) -}}
+COMMENT
+
+
+
+{{- if eq .osid "linux-arch" }}
+
+# useless
+
+#printf "Installing packages using pacman" 
+
+#sudo pacman -S --needed - << _EOF
+#sway
+#uwsm
+#zsh
+#nvim
+#_EOF
+
+{{ end }}

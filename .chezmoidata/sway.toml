@@ -1,0 +1,4 @@
+[pkg.sway]
+name = "Sway wayland compositor"
+[pkg.sway.install.arch]
+id = "sway"

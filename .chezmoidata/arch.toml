@@ -1,0 +1,7 @@
+[repo.arch]
+name = "Arch, btw"
+installed = "pacman -Qe |tr ' ' '\t'"
+compver = "vercmp $1 $2"
+tron = "system"
+priveleged = "true"
+supported = [ "linux-arch" ]
